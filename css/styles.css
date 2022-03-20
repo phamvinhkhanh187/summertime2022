@@ -1,0 +1,319 @@
+@charset "UTF-8";
+@import "base.css";
+@import "fonts.css";
+
+/*==========================================================================*/
+/*                           Common-Setting                                 */
+/*==========================================================================*/
+
+h1, h2, h3, h4, h5, h6, input, button, textarea, select, p, blockquote, th, td, pre, address, li, dt, dd {
+	font-size: 160%;
+	-webkit-text-size-adjust: none;
+	font-weight: 400;
+}
+img {vertical-align: middle;}
+table {width: 100%}
+p {margin: 0 0 1.5em;}
+div > p:last-child{margin-bottom: 0}
+*{box-sizing: border-box;outline: none;} 
+img{max-width: 100%;flex-shrink: 0}
+/*==========================================================================*/
+/*                            Container                                     */
+/*==========================================================================*/
+html {background: none;}
+body{color: #000;font-family: 'Kanit', sans-serif;background: url('../images/bg.png') center /cover no-repeat #000;}
+body.active{overflow: hidden;}
+.inner {width:1200px;margin: 0 auto;}
+#wrapper {min-width:1220px;overflow: hidden}
+a{text-decoration: none;color: #000;}
+
+p,
+dd,
+dt,
+li,
+th,
+td{line-height: 1.5em}
+
+/*==========================================================================*/
+/*                               Header                                     */
+/*==========================================================================*/
+header{position: fixed;top: 0;left: 0;width: 100%;height: auto;z-index: 5;padding: 35px 5% 0;display: flex;justify-content: space-between;transition: all ease 0.3s;}
+header.active{background: rgba(0, 0, 0, 0.5);padding: 30px 6%}
+header #logo{margin-top: 10px;}
+
+
+/* NAVIGATION */
+nav{}
+nav ul{display: flex;align-items: center;}
+nav ul li{margin: 0 0 0 50px}
+nav ul li a{color: #979797;text-transform: uppercase;font-size: 16px;letter-spacing: 0.1em;font-weight: 700}
+nav ul li.button{position: relative;}
+nav ul li.button>a{width: 290px;height: 60px;display: flex;align-items: center;justify-content: center;text-align: center;background: none;color: #fff;border-radius: 3px;font-size: 24px;border:1px solid #f00;}
+nav ul li.button span{position: absolute;bottom: -30px;left: 0;width: 100%;text-align: right;display: block;font-weight: 500}
+nav ul li.button span a{color: #f00;font-size: 24px;letter-spacing: 0.025em}
+
+.btn_open{width: 60px;height:60px;margin: 0;position: absolute;top: 0px;right: 0;display: none;}
+.btn_side{display:block;cursor:pointer;width:100%;height:100%;text-align:center;z-index:9999;position:relative;margin:0 auto;position:absolute;border-radius:0}
+.btn_side span{display:block;position:absolute;height: 2px;width:15px;background:#fff;opacity:1;transform:rotate(0deg);transition:.3s ease-in-out}
+.btn_side span:nth-child(even){left:calc(50% + 1px);}
+.btn_side span:nth-child(odd){left:calc(50% - 14px);}
+.btn_side span:nth-child(1),.btn_side span:nth-child(2){top:21px}
+.btn_side span:nth-child(3),.btn_side span:nth-child(4){top:30px}
+.btn_side span:nth-child(5),.btn_side span:nth-child(6){top:39px}
+
+.btn_side.open span{background: #fff}
+.btn_side.open span:nth-child(1),.btn_side.open span:nth-child(6){transform:rotate(45deg)}
+.btn_side.open span:nth-child(2),.btn_side.open span:nth-child(5){transform:rotate(-45deg)}
+.btn_side.open span:nth-child(1){left:calc(50% - 12px);top:25px}
+.btn_side.open span:nth-child(2){left:calc(50% - 2px);top:25px}
+.btn_side.open span:nth-child(3){left:-50%;opacity:0}
+.btn_side.open span:nth-child(4){left:100%;opacity:0}
+.btn_side.open span:nth-child(5){left:calc(50% - 12px);top:36px}
+.btn_side.open span:nth-child(6){left:calc(50% - 2px);top:36px}
+
+body::-webkit-scrollbar {width: 1em;}
+body::-webkit-scrollbar-track {box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);}
+body::-webkit-scrollbar-thumb {background-color: darkgrey;outline: 1px solid slategrey;}
+
+/* POPUP */
+.popup{position: fixed;top:-50%;left: 0;background: rgba(0, 0, 0, 0.5);width: 100%;height: 100%;z-index: 10;display: flex;align-items: center;justify-content: center;transition: all ease 0.5s;pointer-events: none;visibility: hidden;opacity: 0;}
+.popup_bg{position: absolute;top: 0;left: 0;z-index: 0;width: 100%;height: 100%;cursor: pointer;}
+.popup.open{opacity: 1;visibility: visible;pointer-events: inherit;top: 0;}
+.popup_ct{width: 600px;max-height: 96%;margin: 2% auto;position: relative;background: url('../images/popup_bg.png') center /cover no-repeat;padding: 50px 30px;cursor: default;z-index: 2;overflow: auto;}
+.popup_ct::before{position: absolute;top: 0;left: 0;content: '';background: url('../images/popup_ic_t.png') center /cover no-repeat;width: 120px;height: 195px;content: '';opacity: 0.8}
+/* .popup_ct::after{position: absolute;bottom: -30px;right: -30px;content: '';background: url('../images/popup_ic_b.png') center /cover no-repeat;width: 100px;height: 110px;content: '';} */
+.popup_ct .close{position: absolute;top: 15px;right: 15px;cursor: pointer}
+.popup_ct p{text-align: center;color: #fff;}
+
+.popup_ct .popup_form{background: none;margin-bottom: 15px;}
+.popup_ct .popup_form p{display: flow-root;justify-content: center;align-items: center;margin-bottom: 10px;border-bottom: 1px solid #fff;padding-bottom: 10px;}
+.popup_ct .popup_form p span{width: 200px;padding-right: 20px;border-right: 1px solid #f00;margin-right: 20px;color: #fff;display: inline-block;font-size: 14px;text-align: right;font-weight: 300;flex-shrink: 0;}
+.popup_ct .popup_form p select{width: calc(100% - 250px);padding: 10px;font-size: 14px;}
+.popup_ct .popup_form input{width: calc(100% - 250px);background: none;border:none;color: #fff;padding: 10px 0;font-size: 14px;}
+.popup_ct .popup_form input::placeholder{color: #999;}
+
+.popup_ct .red,
+.popup_ct .note span{color: #f00}
+.popup_ct .accept{position: relative;display: flex;flex-wrap: wrap;justify-content: center;align-items: center}
+.popup_ct .accept label{width: 21px;height: 21px;background: url('../images/ic_rock_off.png') center /cover no-repeat;display: inline-block;margin: 0 5px 0 0;flex-shrink: 0;position: relative;top: 2px}
+.popup_ct .accept input[type="checkbox"] {display: none;}
+.popup_ct .accept input[type="checkbox"]:checked + label {background: url('../images/ic_rock_on.png') center /cover no-repeat;}
+.popup_ct .accept a{margin:0 5px;display: inline-block;}
+
+.popup_ct .btn_accept{width: 210px;height: 50px;border-radius: 5px;background: #666;display: flex;align-items: center;justify-content: center;text-align: center;color: #fff;letter-spacing: 0.05em;font-size: 20px;transition: all ease 0.3s;margin: 0 auto;text-transform: uppercase;font-weight: 300;cursor: pointer;}
+.popup_ct .btn_accept.active{background: #f00}
+.popup_ct .accept a{color: dodgerblue;text-decoration: underline}
+
+.popup_ct .step_2{display: none}
+.popup_ct .step_2 p{font-weight: 300;font-size: 18px}
+.popup_ct .big{font-weight: 400;font-size: 24px;margin-bottom: 15px}
+.popup_ct .big{font-weight: 400;font-size: 24px;margin-bottom: 15px}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
+
+/* Firefox */
+input[type=number] {-moz-appearance: textfield;}
+
+/*==========================================================================*/
+/*                               ALL                                        */
+/*==========================================================================*/
+/* FIX FONT + PADDING */
+.pdb30{padding: 0 0 30px}
+.pdb50{padding: 0 0 50px;}
+.mgb0{margin-bottom: 0;}
+.mgb30{margin-bottom: 30px;}
+.mgb50{margin-bottom: 50px;}
+.fs12{font-size: 12px;}
+.fs16{font-size: 16px;}
+.fs18{font-size: 18px;}
+.fs20{font-size: 20px;}
+
+.btn{text-align: center;display: block;margin:0 auto;}
+.btn a{position: relative;text-align: center;color: #fff;width: 270px;height: auto;background: #373737;font-size: 32px;text-decoration: none;display: flex;justify-content: center;align-items: center;margin:0 auto;box-sizing: border-box;transition: all ease 0.3s;font-weight: bold;text-transform: uppercase;border-radius: 5px;letter-spacing: 0.1em;line-height: 1em;padding: 15px 0 10px}
+.btn a:hover{background: #101010;color:#fff;}
+
+/*==========================================================================*/
+/*                               Main                                       */
+/*==========================================================================*/
+.tel,
+.btn a,
+.box_intro_txt .box_intro_info .time p,
+.box_intro_btn p a,
+.box_artist_timeline p,
+.box_artist_timeline ul li span,
+.box_ticket_list>li .info .name,
+.box_ticket_list>li .price p .discount,
+.box_ticket_list>li .price p .real,
+.box_ticket_ct h3 span{font-family: 'Lalezar', cursive;}
+
+#main{position: relative;z-index: 2;}
+.ttl{}
+.ttl h3{line-height: 1.4em;font-size: 30px;color:#073265;margin-bottom: 0px;}
+.ttl p{font-size: 16px;font-weight: bold;letter-spacing: 0.075em}
+
+
+/* BOX INTRO */
+.box_intro{background: url('../images/intro_bg.png') center /cover no-repeat #000;height: 1100px;position: relative;z-index: 1}
+.box_intro_ct{padding: 225px 5.25% 0;display: flex;justify-content: space-between;height: 100%;}
+.box_intro_txt{text-align: center;text-transform: uppercase;width: 840px;}
+.box_intro_txt p{margin-bottom: 0;}
+.box_intro_txt .name{margin: 40px 0 0 40px;}
+.box_intro_txt .box_intro_info{padding: 0;margin: 55px 0 75px 40px}
+.box_intro_txt .box_intro_info .time{display: flex;justify-content: center;}
+.box_intro_txt .box_intro_info .location{position: relative;display: flex;justify-content: flex-end;margin-top: 30px;}
+.box_intro_txt .box_intro_info .location p span {font-size: 30px;color:black;}
+.box_intro_txt .box_intro_info .location_txt{margin-right: 15px}
+.box_intro_txt .box_intro_info p{color: #fff;text-align: left;letter-spacing: 0.1em;font-weight: 300}
+.box_intro_txt .box_intro_info p span {font-size: 24px;letter-spacing: 0.15em;color: #f00;font-weight: bold;display: block;margin-bottom: 5px;}
+
+.box_intro_btn{display: flex;padding-left: 145px;}
+.box_intro_btn p{margin: 0 15px}
+.box_intro_btn p a{width: 290px;height: 60px;border-radius: 5px;background: #f00;border:1px solid #f00;display: flex;align-items: center;justify-content: center;text-align: center;color: #fff;letter-spacing: 0.05em;font-size: 24px;transition: all ease 0.3s;position: relative;}
+.box_intro_btn .btn_bd a{width: 280px;background: #f00;color: #f00;background: none;}
+
+.box_intro_logo{position: relative;top: -80px;right: -5px;}
+.box_intro_logo p img {border-radius: 50%;overflow: hidden;}
+/* BOX ARTIST */
+.box_artist{padding: 40px 0 0;position: relative;z-index: 2;}
+.box_artist_ct{display: flex;justify-content: space-between;padding: 0 4%;position: relative;}
+.box_artist_ct::before{background: url('../images/artist_bg.png') left center /cover no-repeat;width: 1482px;height: 692px;position: absolute;top: -40px;left: 0;content: '';z-index: -1; }
+
+
+.artist_timeline{margin-top: 7%;;margin-left: 12%;flex-shrink: 0;}
+.artist_timeline ul{}
+.artist_timeline ul li{font-size: 30px;font-weight: 500;color: #fff;margin-bottom: 2px;text-transform: uppercase}
+.artist_timeline ul li.break{color: #000}
+.artist_timeline ul li span{color: #000;letter-spacing: 0.1em;margin-right: 20px;font-weight: bold;width: 90px;display: inline-block;}
+
+.artist_band{position: relative;margin-top: 15px}
+.artist_band::before{background: url('../images/artist_ttl.png') center /cover no-repeat;width: 944px;height: 122px;content: '';position: absolute;top: -40px;left: calc(50% - 530px);}
+.artist_band p{position: relative;z-index: 2}
+
+.artist_logo{background: #000;position: relative;margin-top: 125px;padding: 60px 0 80px}
+.artist_logo ul{display: flex;justify-content: center;align-items: center}
+.artist_logo ul li{margin: 0 20px}
+
+
+/* BOX TICKET */
+.box_ticket{position: relative;padding: 270px 11% 160px 11%;}
+.box_ticket::before{background: none;position: absolute;top: 0;right: 0;content: '';width: 1920px;height: 980px;}
+.box_ticket_ct{width: 100%;}
+.box_ticket_ct h3{color: #fff;font-size: 18px;font-weight: 300;margin-bottom: 55px;}
+.box_ticket_ct h3 span{color: #f00;font-size: 78px;font-weight: bold;display: inline-block;line-height: 1em;text-transform: uppercase;font-weight: bold;letter-spacing: 0.05em;}
+.box_ticket_ct .btn.active a{background: #f00;}
+
+
+.box_ticket_list{display: flex;flex-wrap: wrap;margin-bottom: 70px;}
+.box_ticket_list>li{background: rgba(0, 0, 0, 0.7);position: relative;width: 680px;height: 270px;margin-bottom: 0;display: flex;padding: 50px 50px 50px 70px;color: #fff;align-items: center;margin-right: 110px;}
+.box_ticket_list>li:last-child{margin-right: 0}
+.box_ticket_list>li::before{background: url('../images/ticket_ico.png') center /cover no-repeat;width: 86px;height: 92px;position: absolute;top: calc(50% - 43px);left: -50px;content: '';}
+.box_ticket_list>li .info{border-right: 1px solid #fff;width: calc(50% + 20px);height: 100%}
+.box_ticket_list>li .info .name{color: #fff;font-size: 32px;font-weight: bold;line-height: 0.75em;padding: 30px 0 0 15px;margin-bottom: 20px;letter-spacing: 0.05em;}
+.box_ticket_list>li .info .name span{color: #666;display: block;}
+.box_ticket_list>li .info .bonus{}
+.box_ticket_list>li .info .bonus>span{position: relative;padding-left: 10px;display: block;}
+.box_ticket_list>li .info .bonus>span::first-letter{font-size: 20px;font-weight: bold;margin-right: 5px}
+.box_ticket_list>li .info .bonus>span::before{background: #fff;width: 4px;height: 4px;border-radius: 50%;position: absolute;top: calc(50% - 2px);left: 0;content: ''}
+
+.box_ticket_list>li .price{text-align: center;width: calc(50% - 20px);padding-left: 30px;}
+.box_ticket_list>li .price p{}
+.box_ticket_list>li .price p span{display: block;color: #fff;line-height: 0.75em;}
+.box_ticket_list>li .price p .discount{font-size: 48px;font-weight: bold;position: relative;display: inline-block;line-height: 1em;margin-bottom: 5px;}
+.box_ticket_list>li .price p .discount::before{width: 100%;height: 3px;background: #f00;position: absolute;top: 16px;left: 0;content: '';}
+.box_ticket_list>li .price p .real{color: #f00;font-size: 72px;font-weight: bold}
+.box_ticket_list>li .price p .txt{color: #fff;font-size: 18px;font-weight: 300}
+.box_ticket_list>li .number{}
+.box_ticket_list>li .number span{color: #f00;font-size: 40px;font-weight: bold;cursor: pointer;}
+.box_ticket_list>li .number .amount{margin: 0 10px;}
+.box_ticket_list>li .number input{background: url('../images/ticket_ic_numb.png') center /cover;border:none;color: #525252;width: 68px;height: 72px;font-size: 40px;text-align: center;font-weight: bold;padding: 0;margin: 0}
+
+/* BOX FAQ */
+.box_faq{background: url('../images/faq_bg.png') left center /cover no-repeat;padding: 15px 4.5% 15px 31.5%;display: flex;align-items: center;}
+.box_faq_l{width: 50%;padding-right: 30px;}
+.box_faq_r{width: 50%}
+.box_faq_ct{display: flex;width: 100%;align-items: center;height: 100%;}
+.box_faq_ct h3{font-size: 54px;color: #000;text-transform: uppercase;font-weight: bold;letter-spacing: 0.05em;line-height: 1.20em;margin-bottom: 20px;
+	text-shadow: #fff 1px 0px 0px, #fff 0.540302px 0.841471px 0px, #fff -0.416147px 0.909297px 0px, #fff -0.989992px 0.14112px 0px, #fff -0.653644px -0.756802px 0px, #fff 0.283662px -0.958924px 0px, #fff 0.96017px -0.279415px 0px;}
+.box_faq_ct dl{margin-bottom: 15px;}
+.box_faq_ct dl:last-child{margin-bottom: 0}
+.box_faq_ct dt{font-size: 18px;color: #f00;font-weight: 500;position: relative;cursor: pointer;display: inline-block;padding-right: 30px;}
+.box_faq_ct dt::before{background: url('../images/faq_arr.png') center /cover no-repeat;width: 14px;height: 20px;content: '';position: absolute;top: 5px;right: 0;transition: all ease 0.3s;}
+.box_faq_ct dd{font-size: 14px;color: #fff;font-weight: 300;display: none;}
+.box_faq_ct dd a{color: #fff;text-decoration: underline;}
+.box_faq_ct dt.open::before{transform: rotate(90deg)}
+
+/*==========================================================================*/
+/*                               Footer                                     */
+/*==========================================================================*/
+footer{position: relative; z-index: 4;background: #000;padding: 45px 2% ;}
+footer .foot_ct{display: flex;justify-content: space-between;width: 100%;color: #fff;}
+footer .foot_info{text-transform: uppercase;width: 100%;margin-top: 40px}
+footer .foot_info_ct{width: calc(100% - 440px)}
+footer .foot_info_list{width: 100%}
+footer .foot_info_list dl{display: flex;width: 100%;margin-bottom: 40px;flex-wrap: wrap}
+footer .foot_info_list dl:last-child{margin-bottom: 0}
+footer .foot_info_list dt{border-left: 3px solid #960000;font-size: 12px;width: 190px;padding:15px 0 15px 15px;flex-shrink: 0;display: flex;align-items: center;letter-spacing: 0.1em;text-transform: uppercase;}
+footer .foot_info_list dd{width: calc(100% - 190px);margin-top: 0;display: flex;align-items: center;flex-wrap: wrap;}
+footer .foot_info_list dd a{margin: 0 20px 0 0;display: inline-block;}
+footer .foot_info_list dd a:last-child{margin-right: 0}
+footer .foot_info_list dl dd a img{max-height: 70px}
+footer .foot_info_list dl dd a {margin: 10px;}
+
+footer .foot_info_comp{padding-left: 20px;}
+footer .foot_info_comp p{font-size: 14px;font-weight: 300;margin-bottom: 5px;}
+footer .foot_info_comp p span{font-weight: 700;display: block;margin-bottom: 0;line-height: 1em;letter-spacing: 0.05em;font-size: 15px}
+footer .foot_info_comp p a{font-size: 12px;color: #fff;font-weight: 500}
+
+footer .foot_tel{width: 440px;margin-bottom: 10px;display: flex;justify-content: space-between;flex-direction: column;}
+footer .foot_tel p{text-align: right;margin-bottom: 0}
+footer .foot_tel p img{display: inline-block;}
+footer .foot_tel p a{font-weight: bold;font-size: 50px;line-height: 1em;color: #f00;display: inline-block;}
+footer .foot_tel ul{display: flex;justify-content: flex-end;}
+footer .foot_tel ul li{color: #fff;}
+footer .foot_tel ul li a{color: #fff;font-size: 14px;}
+
+/* CHORME ONLY  */
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+    
+}
+
+/* FIREFOX CSS */
+@supports (-moz-appearance:none) and (-webkit-appearance:none)
+{
+  
+}
+
+/* IE STUPID CSS */
+@media screen\0 {
+	
+}
+
+/* EDGE 12+ CSS */
+@supports (-ms-ime-align:auto) {
+	
+}
+
+
+
+@media screen and (min-width: 1336px) {
+  .box_ticket_list{
+    flex-wrap: unset;
+  }
+}
+
+.error{
+  color: red;
+  font-size: 13px;
+}
+
+.Toastify__toast{
+  font-size: 15px !important;
+}
+
+.btn_accept-disable{
+  background: #373737 !important;
+  border: 1px solid #373737 !important;
+  cursor: not-allowed !important;
+}
